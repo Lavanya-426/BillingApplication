@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.example.BillingApplication.model.enums.InvoiceStatus;
+
 @Entity
 public class Invoice {
 
@@ -18,6 +20,9 @@ public class Invoice {
     private Double amount;
 
     private LocalDate dueDate;
+
+    @Enumerated(EnumType.STRING)
+    private InvoiceStatus status;
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
@@ -44,6 +49,9 @@ public class Invoice {
 
     public LocalDate getDueDate() { return dueDate; }
     public void setDueDate(LocalDate dueDate) { this.dueDate = dueDate; }
+
+    public InvoiceStatus getStatus() {return status;}
+    public void setStatus(InvoiceStatus status) {this.status = status;}
 
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }

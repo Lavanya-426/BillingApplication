@@ -18,8 +18,12 @@ public class Customer {
 
     private String phone;
 
-    private LocalDateTime createdAt = LocalDateTime.now();
+private LocalDateTime createdAt;
 
+@PrePersist
+public void prePersist() {
+    this.createdAt = LocalDateTime.now();
+}
     // Constructors
     public Customer() {}
 
