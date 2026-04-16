@@ -5,7 +5,8 @@ import com.example.BillingApplication.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @RestController
 @RequestMapping("/api/customers")
@@ -20,10 +21,9 @@ public class CustomerController {
     }
 
     @GetMapping
-    public List<Customer> getAllCustomers() {
-        return customerService.getAllCustomers();
-    }
-
+public Page<Customer> getAllCustomers(Pageable pageable) {
+    return customerService.getAllCustomers(pageable);
+}
     @GetMapping("/{id}")
     public Customer getCustomer(@PathVariable Long id) {
         return customerService.getCustomerById(id);

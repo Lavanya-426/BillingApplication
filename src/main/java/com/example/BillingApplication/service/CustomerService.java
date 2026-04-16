@@ -7,7 +7,9 @@ import com.example.BillingApplication.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 
 @Service
 public class CustomerService {
@@ -34,10 +36,9 @@ if (customer.getEmail() == null || customer.getEmail().isBlank()) {
     }
 
     // Get all customers
-    public List<Customer> getAllCustomers() {
-        return customerRepository.findAll();
-    }
-
+    public Page<Customer> getAllCustomers(Pageable pageable) {
+    return customerRepository.findAll(pageable);
+}
     // Get customer by id
     public Customer getCustomerById(Long id) {
         return customerRepository.findById(id)
